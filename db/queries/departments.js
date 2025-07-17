@@ -14,6 +14,17 @@ export async function createDepartment(name, description, banner_image) {
   return department;
 }
 
+export async function getDepartments() {
+  const sql = `
+    SELECT *
+    FROM departments
+    `;
+
+  const {
+    rows: [department],
+  } = await db.query(sql);
+  return department;
+}
 export async function getDepartmentById(id) {
   const sql = `
     SELECT *

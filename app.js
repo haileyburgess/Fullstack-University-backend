@@ -1,8 +1,8 @@
 import express from "express";
-import getUserFromToken from "./middleware/getUserFromToken";
-import requireBody from "./middleware/requireBody";
+import getUserFromToken from "./middleware/getUserFromToken.js";
+import requireBody from "./middleware/requireBody.js";
 import { createUser, getUserByUsernameAndPassword } from "#db/queries/users";
-import { signToken } from "./utils/jwt";
+import { signToken } from "./utils/jwt.js";
 
 const app = express();
 
