@@ -1,14 +1,20 @@
 import express from "express";
 import getUserFromToken from "./middleware/getUserFromToken.js";
 import requireBody from "./middleware/requireBody.js";
-import { createUser, getUserByUsernameAndPassword } from "./db/queries/users.js";
+import {
+  createUser,
+  getUserByUsernameAndPassword,
+} from "./db/queries/users.js";
 import { signToken } from "./utils/jwt.js";
-import facultyRouter from "./api/faculty.js"
+import facultyRouter from "./api/faculty.js";
 import departmentsRouter from "./api/departments.js";
 
 const app = express();
 
 app.use(express.json());
+app.use("/faculty", facultyRouter);
+app.use("/departments", departmentsRouter);
+
 app.use(getUserFromToken);
 
 app.post(
@@ -45,8 +51,8 @@ app.post(
     }
   }
 );
-
-app.use("/faculty", facultyRouter);
-app.use("/departments", departmentsRouter);
+app.get("/", (req, res) => {
+  res.send("Hello, world!");
+});
 
 export default app;
