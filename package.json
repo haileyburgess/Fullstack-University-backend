@@ -1,9 +1,6 @@
 {
   "name": "fullstack_academy",
   "type": "module",
-  "imports": {
-    "#*": "./*.js"
-  },
   "scripts": {
     "start": "node --env-file=.env server.js",
     "dev": "node --watch --env-file=.env server.js",

@@ -2,9 +2,9 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import { createUser } from "#db/queries/users";
-import { getUserByUsernameAndPassword } from "#db/queries/users";
-import { createToken } from "#utils/jwt";
+import { createUser } from "../db/queries/users";
+import { getUserByUsernameAndPassword } from "../db/queries/users";
+import { createToken } from "../utils/jwt";
 
 router
   .route("/register")
