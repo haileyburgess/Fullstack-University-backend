@@ -14,8 +14,6 @@ import {
   getDepartmentByFacultyId,
 } from "../db/queries/departments.js";
 
-router.use(requireUser);
-
 // get all departments
 
 router.route("/").get(async (req, res) => {
