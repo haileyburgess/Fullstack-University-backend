@@ -19,10 +19,7 @@ export async function getDepartments() {
     SELECT *
     FROM departments
     `;
-
-  const {
-    rows: [department],
-  } = await db.query(sql);
+  const { rows: department } = await db.query(sql);
   return department;
 }
 export async function getDepartmentById(id) {
