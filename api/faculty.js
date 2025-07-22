@@ -27,7 +27,8 @@ router.route("/").get(async (req, res) => {
       awards: member.awards || [],
       researchAreas: member.research_areas || [],
       department: member.department_name || "Unknown Department",
-      departmentId: member.department_id || null
+      departmentId: member.department_id || null,
+      profileImage: member.profile_image || null
     }));
     res.json(transformedFaculty);
   } catch (error) {
@@ -77,7 +78,8 @@ router.route("/:id").get(async (req, res) => {
     awards: req.faculty.awards || [],
     researchAreas: req.faculty.research_areas || [],
     department: req.faculty.department_name || "Unknown Department",
-    departmentId: req.faculty.department_id || null
+    departmentId: req.faculty.department_id || null,
+    profileImage: req.faculty.profile_image || null
   };
   res.json(transformedFaculty);
 });

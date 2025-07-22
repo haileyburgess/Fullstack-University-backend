@@ -27,7 +27,8 @@ router.route("/").get(async (req, res) => {
       phone: dept.phone,
       email: dept.email,
       location: dept.location,
-      facultyCount: parseInt(dept.faculty_count) || 0
+      facultyCount: parseInt(dept.faculty_count) || 0,
+      bannerImage: dept.banner_image || null
     }));
     res.json(transformedDepartments);
   } catch (error) {
@@ -59,7 +60,8 @@ router.route("/:id").get(async (req, res) => {
     phone: req.department.phone,
     email: req.department.email,
     location: req.department.location,
-    facultyCount: parseInt(req.department.faculty_count) || 0
+    facultyCount: parseInt(req.department.faculty_count) || 0,
+    bannerImage: req.department.banner_image || null
   };
   res.json(transformedDepartment);
 });
