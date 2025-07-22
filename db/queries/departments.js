@@ -48,3 +48,13 @@ export async function getDepartmentByFacultyId(facultyId) {
   const { rows: departments } = await db.query(sql, [facultyId]);
   return departments;
 }
+
+export async function deleteDepartment(departmentId) {
+  const sql = `
+  SELECT departments.*
+  FROM departments
+  WHERE department_id = $1
+  `;
+  const {rows: departments} = await db.query(sql, [departmentId]);
+  return departments;
+}
