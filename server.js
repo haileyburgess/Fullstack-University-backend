@@ -1,11 +1,11 @@
 import "dotenv/config";
 import app from "./app.js";
-import db from "./db/client.js";
 
-const PORT = process.env.PORT ?? 3000;
-
-await db.connect();
+const PORT = process.env.PORT ?? 3002;
 
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`);
+  console.log(`🚀 University Backend API running on port ${PORT}...`);
+  console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
+  console.log(`🎓 Departments: http://localhost:${PORT}/api/departments`);
+  console.log(`👨‍🏫 Faculty: http://localhost:${PORT}/api/faculty`);
 });

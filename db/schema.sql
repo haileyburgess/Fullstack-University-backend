@@ -6,15 +6,20 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id serial PRIMARY KEY,
   username text NOT NULL,
+  email text NOT NULL,
   password text NOT NULL,
-  UNIQUE (username)
+  UNIQUE (username),
+  UNIQUE (email)
 );
 
 CREATE TABLE departments (
     id serial PRIMARY KEY,
     name text NOT NULL,
     description text NOT NULL,
-    banner_image text NOT NULL
+    banner_image text NOT NULL,
+    phone text,
+    email text,
+    location text
 );
 
 CREATE TABLE faculty (
@@ -23,7 +28,13 @@ CREATE TABLE faculty (
     email text NOT NULL,
     bio text NOT NULL,
     profile_image text NOT NULL,
-    department_id integer NOT NULL REFERENCES departments(id) ON DELETE CASCADE
+    title text,
+    phone text,
+    office text,
+    education text,
+    publications integer DEFAULT 0,
+    awards text[],
+    research_areas text[]
 );
 
 CREATE TABLE faculty_departments (

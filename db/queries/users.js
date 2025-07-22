@@ -1,18 +1,18 @@
 import db from "../client.js";
 import bcrypt from "bcrypt";
 
-export async function createUser(username, password) {
+export async function createUser(username, email, password) {
   const sql = `
     INSERT INTO users
-    (username,password)
+    (username, email, password)
     VALUES
-    ($1, $2)
+    ($1, $2, $3)
     RETURNING *
     `;
   const hashedPassword = await bcrypt.hash(password, 10);
   const {
-    rows: [user],
-  } = await db.query(sql, [username, hashedPassword]);
+    rows: [user]
+  } = await db.query(sql, [username, email, hashedPassword]);
   return user;
 }
 
@@ -23,7 +23,7 @@ export async function getUserByUsernameAndPassword(username, password) {
     WHERE username = $1
     `;
   const {
-    rows: [user],
+    rows: [user]
   } = await db.query(sql, [username]);
   if (!user) return null;
 
@@ -41,7 +41,7 @@ export async function getUserById(id) {
     `;
 
   const {
-    rows: [user],
+    rows: [user]
   } = await db.query(sql, [id]);
   return user;
 }

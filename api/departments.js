@@ -11,7 +11,7 @@ import {
   createDepartment,
   getDepartments,
   getDepartmentById,
-  getDepartmentByFacultyId,
+  getDepartmentByFacultyId
 } from "../db/queries/departments.js";
 
 // get all departments
@@ -19,7 +19,17 @@ import {
 router.route("/").get(async (req, res) => {
   try {
     const departments = await getDepartments();
-    res.json(departments);
+    // Transform the data to match frontend expectations
+    const transformedDepartments = departments.map((dept) => ({
+      id: dept.id,
+      name: dept.name,
+      description: dept.description,
+      phone: dept.phone,
+      email: dept.email,
+      location: dept.location,
+      facultyCount: parseInt(dept.faculty_count) || 0
+    }));
+    res.json(transformedDepartments);
   } catch (error) {
     console.error("Error getting departments:", error);
     res.status(500).send("Internal server error");
@@ -41,5 +51,15 @@ router.param("id", async (req, res, next, id) => {
 });
 
 router.route("/:id").get(async (req, res) => {
-  res.send(req.department);
+  // Transform the data to match frontend expectations
+  const transformedDepartment = {
+    id: req.department.id,
+    name: req.department.name,
+    description: req.department.description,
+    phone: req.department.phone,
+    email: req.department.email,
+    location: req.department.location,
+    facultyCount: parseInt(req.department.faculty_count) || 0
+  };
+  res.json(transformedDepartment);
 });
